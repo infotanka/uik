@@ -23,19 +23,25 @@ $(function() {
             var geoObjects = [];
             $(data).each(function(idx, uik) {
                 var preset = 'twirl#blueIcon';
+                var color = '';
                 if (uik.sobyaninPercents < 50) {
                     preset = 'twirl#blueIcon';
+                    color = 'lightblue';
                 } else if (uik.sobyaninPercents < 51) {
                     preset = 'twirl#darkorangeIcon';
+                    color = 'orange';
                 } else {
                     preset = 'twirl#redIcon';
+                    color = 'red';
                 }
 
                 var placemark = new ymaps.Placemark(
                     [uik.lat, uik.lon],
                     {
                         iconContent: uik.total,
-                        hintContent: uik.sobyaninPercents + '%'
+                        hintContent: uik.sobyaninPercents + '%',
+                        clusterCaption: 'УИК ' + uik.uic,
+                        balloonContentBody: '<div style="background-color: ' + color + ';width: 110px;">&nbsp;</div><span>Наблюдателей: ' + uik.total + '</span><br><span>Собянин: ' + uik.sobyaninPercents + '%</span>'
                     },
                     {
                         preset: preset,
