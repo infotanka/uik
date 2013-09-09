@@ -6,33 +6,31 @@ $(function() {
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
         var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-        /*
-        var marker = new google.maps.Marker({
-            position: new google.maps.LatLng(55.76, 37.64),
-            map: map,
-            title: 'Hello World!'
-        });
-         */
+        
         var infoIcon = new google.maps.MarkerImage(
             "images/info.png",
             new google.maps.Size(8, 8),
             new google.maps.Point(0, 0),
             new google.maps.Point(0, 8)
         );
+        
         var alertIcon = new google.maps.MarkerImage(
             "images/alert.png",
             new google.maps.Size(8, 8),
             new google.maps.Point(0, 0),
             new google.maps.Point(0, 8)
         );
+        
         var warningIcon = new google.maps.MarkerImage(
             "images/warning.png",
             new google.maps.Size(8, 8),
             new google.maps.Point(0, 0),
             new google.maps.Point(0, 8)
         );
+
+        var openedInfoWindow = null;
+        
         $.get('/uiks.json', function(data) {
-            var totalCount = data.length;
             
             $(data).each(function(idx, uik) {
                 var icon = infoIcon;
@@ -58,6 +56,21 @@ $(function() {
                     map: map,
                     icon: icon,
                     title: uik.sobyaninPercents + '%'
+                });
+                
+                var contentString = '<h5>УИК №' + uik.uic + '</h5><div>Результат С. Собянина: ' + uik.sobyaninPercents +'%</div>';
+                contentString = contentString + '<div>Количество наблюдателей: '+uik.total+'</div>';
+                var infoWindow = new google.maps.InfoWindow({
+                    content: contentString
+                });
+
+                google.maps.event.addListener(marker, 'click', function() {
+                    if (openedInfoWindow != null) {
+                        openedInfoWindow.close();
+                    }
+                    infoWindow.open(map, marker);
+                    
+                    openedInfoWindow = infoWindow;
                 });
             });
         });
