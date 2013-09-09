@@ -14,21 +14,21 @@
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 
-        <script src="script.js?v=2" type="text/javascript"></script>
-        <link href="styles/main.css?v=1" rel="stylesheet">
+        <script src="script.js?v=3" type="text/javascript"></script>
+        <link href="styles/main.css?v=2" rel="stylesheet">
     </head>
     <body>
         <div id="map" style="width:100%;height:100%;"></div>
 
         <div class="b-legend">
-            <h4>Карта результатов голосования за Сергея Собянина</h4>
+            <h4 class="b-legend__header">Карта результатов голосования за Сергея Собянина</h4>
 
             <p>На карте отмечены УИКи с результатами голосования за Сергея Собянина.</p>
             <p><b>Типы точек:</b></p>
             <table class="b-legend__items">
                 <tr>
                     <td class="b-legend__items-term"><img src="/images/warning.png" alt="" /></td>
-                    <td class="b-legend__items-description">УИК, где С.С. Собянин набрал более 50% голосов при отсутсвии наблюдателей</td>
+                    <td class="b-legend__items-description">УИК, где С.С. Собянин набрал более 50% голосов при отсутствии наблюдателей</td>
                 </tr>
                 <tr>
                     <td class="b-legend__items-term"><img src="/images/alert.png" alt="" /></td>
@@ -36,6 +36,24 @@
                 </tr>
                 <tr>
                     <td class="b-legend__items-term"><img src="/images/info.png" alt="" /></td>
+                    <td class="b-legend__items-description">УИК, где С.С. Собянин набрал менее 50% голосов</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="b-legend-mobile">
+            <div class="b-legend-mobile__header">
+                Карта результатов голосования за Сергея Собянина
+            </div>
+            <table class="b-legend__items">
+                <tr>
+                    <td class="b-legend__items-term"><img src="/images/warning.png" alt="" /></td>
+                    <td class="b-legend__items-term"><img src="/images/alert.png" alt="" /></td>
+                    <td class="b-legend__items-term"><img src="/images/info.png" alt="" /></td>
+                </tr>
+                <tr>
+                    <td class="b-legend__items-description">УИК, где С.С. Собянин набрал более 50% голосов при отсутствии наблюдателей</td>
+                    <td class="b-legend__items-description">УИК, где С.С. Собянин набрал более 50% голосов при наличии наблюдателей</td>
                     <td class="b-legend__items-description">УИК, где С.С. Собянин набрал менее 50% голосов</td>
                 </tr>
             </table>
