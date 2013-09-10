@@ -46,7 +46,7 @@ var UicsMap = function(mapElement, options) {
     initialize();
     
     return {
-        render: function(dataThreshold) {
+        render: function(dataThreshold, dataOutdoorThreshhold) {
             
             loadingDeferred.done(function() {
                 if (markers.length > 0) {
@@ -64,7 +64,7 @@ var UicsMap = function(mapElement, options) {
                 $(uics).each(function(idx, uik) {
                     var icon = infoIcon;
                 
-                    if (uik.sobyaninPercents > dataThreshold) {
+                    if ((uik.sobyaninPercents > dataThreshold) || (uik.outdoorPercents > dataOutdoorThreshhold)) {
                         if (uik.total == 0) {
                             icon = warningIcon;
                         } else {
@@ -82,6 +82,7 @@ var UicsMap = function(mapElement, options) {
                     });
                 
                     var contentString = '<h5>УИК №' + uik.uic + '</h5><div>Результат С. Собянина: ' + uik.sobyaninPercents +'%</div>';
+                    contentString = contentString + '<div>Процент «на дому»: '+uik.outdoorPercents+'%</div>';
                     contentString = contentString + '<div>Наблюдателей: '+uik.total+'</div>';
                     contentString = contentString + '<div>Членов комиссии с ПРГ: '+uik.uic_prg+'</div>';
                     contentString = contentString + '<div>Членов комиссии с ПCГ: '+uik.uic_psg+'</div>';
