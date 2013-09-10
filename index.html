@@ -13,16 +13,20 @@
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 
-        <script src="script.js?v=5" type="text/javascript"></script>
+        <script src="scripts/bootstrap-slider.js" type="text/javascript"></script>
+        <script src="scripts/UicsMap.js" type="text/javascript"></script>
+        <script src="scripts/main.js" type="text/javascript"></script>
+
         <link href="styles/main.css?v=3" rel="stylesheet">
+        <link href="styles/slider.css" rel="stylesheet">
 
         <meta content="Карта УИКов, отмеченных разным цветом. Цвет зависимости от того, какой результат был у Сергея Собянина, и были ли на участке наблюдатели." name="description">
         <meta content="Карта подозрительных УИКов" name="title">
         <meta content="sobyanin2procenta.info" property="og:url">
         <meta content="Карта подозрительных УИКов" property="og:title">
-        <meta content="Карта УИКов, отмеченных разным цветом. Цвет зависимости от того, какой результат был у Сергея Собянина, и были ли на участке наблюдатели." property="og:description">
+        <meta content="Карта УИКов, отмеченных разным цветом. Цвет зависит от того, какой результат был у Сергея Собянина, и были ли на участке наблюдатели." property="og:description">
         <meta content="website" property="og:type">
-        <meta content="http://sobyanin2procenta.info/image-moscow.png" property="og:image">
+        <meta content="http://sobyanin2procenta.info/images/image-moscow.png" property="og:image">
         <meta content="Карта подозрительных УИКов" property="og:site_name">
         <title>Карта подозрительных УИКов</title>
     </head>
@@ -32,7 +36,7 @@
         <div class="b-legend">
             <h4 class="b-legend__header">Карта подозрительных УИКов</h4>
 
-            <p>Карта УИКов, отмеченных разным цветом. Цвет зависимости от того, какой результат был у Сергея Собянина, и были ли на участке наблюдатели.</p>
+            <p>Карта УИКов, отмеченных разным цветом. Цвет зависит от того, какой результат был у Сергея Собянина, и были ли на участке наблюдатели.</p>
             <p><b>Типы точек:</b></p>
             <table class="b-legend__items">
                 <tr>
@@ -49,6 +53,11 @@
                 </tr>
             </table>
 
+            <div class="b-legend__slider">
+                <p><b>Порог:</b></p>
+                <div class="j-slider"></div>
+            </div>
+            
             <div class="b-legend__social-block">
                 <script type="text/javascript">(function() {
                     if (window.pluso)if (typeof window.pluso.start == "function") return;
