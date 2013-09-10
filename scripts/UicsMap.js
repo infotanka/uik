@@ -1,24 +1,27 @@
 var UicsMap = function(mapElement, options) {
     
     var infoIcon = new google.maps.MarkerImage(
-        "images/info.png",
-        new google.maps.Size(8, 8),
+        "images/info-32x32.png",
+        new google.maps.Size(32, 32),
         new google.maps.Point(0, 0),
-        new google.maps.Point(0, 8)
+        new google.maps.Point(0, 8),
+        new google.maps.Size(8, 8)
     );
         
     var alertIcon = new google.maps.MarkerImage(
-        "images/alert.png",
-        new google.maps.Size(8, 8),
+        "images/alert-32x32.png",
+        new google.maps.Size(32, 32),
         new google.maps.Point(0, 0),
-        new google.maps.Point(0, 8)
+        new google.maps.Point(0, 8),
+        new google.maps.Size(8, 8)
     );
         
     var warningIcon = new google.maps.MarkerImage(
-        "images/warning.png",
-        new google.maps.Size(8, 8),
+        "images/warning-32x32.png",
+        new google.maps.Size(32, 32),
         new google.maps.Point(0, 0),
-        new google.maps.Point(0, 8)
+        new google.maps.Point(0, 8),
+        new google.maps.Size(8, 8)
     );
     
     var openedInfoWindow = null;
@@ -95,6 +98,22 @@ var UicsMap = function(mapElement, options) {
                         infoWindow.open(map, marker);
                     
                         openedInfoWindow = infoWindow;
+                    });
+
+                    google.maps.event.addListener(map, 'zoom_changed', function() {
+                        var zoom = map.getZoom();
+                        var relativePixelSize = 8*zoom*zoom/100;
+
+                        //change the size of the icon
+                        marker.setIcon(
+                            new google.maps.MarkerImage(
+                                marker.getIcon().url, //marker's same icon graphic
+                                null,//size
+                                null,//origin
+                                null, //anchor
+                                new google.maps.Size(relativePixelSize, relativePixelSize) //changes the scale
+                            )
+                        );
                     });
                     
                     markers.push(marker);
