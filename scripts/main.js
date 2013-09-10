@@ -23,6 +23,10 @@ $(function() {
     }).on('slideStop', function(event) {
         renderThresholdValue(event.value);
     });
+
+    $('.j-close-legend').click(function() {
+        $('.j-legend-mobile').hide();
+    });
     
     renderThresholdValue(threshold);
 });
