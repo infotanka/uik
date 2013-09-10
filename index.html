@@ -1,6 +1,5 @@
 <html>
     <head>
-        <title>За честные выборы!</title>
         <meta charset="utf-8"> 
         <style type="text/css">
             body {
@@ -16,29 +15,57 @@
 
         <script src="script.js?v=4" type="text/javascript"></script>
         <link href="styles/main.css?v=2" rel="stylesheet">
+
+        <meta content="Карта УИКов, отмеченных разным цветом. Цвет зависимости от того, какой результат был у Сергея Собянина, и были ли на участке наблюдатели." name="description">
+        <meta content="Карта подозрительных УИКов" name="title">
+        <meta content="sobyanin2procenta.info" property="og:url">
+        <meta content="Карта подозрительных УИКов" property="og:title">
+        <meta content="Карта УИКов, отмеченных разным цветом. Цвет зависимости от того, какой результат был у Сергея Собянина, и были ли на участке наблюдатели." property="og:description">
+        <meta content="website" property="og:type">
+        <meta content="http://sobyanin2procenta.info/image-moscow.png" property="og:image">
+        <meta content="Карта подозрительных УИКов" property="og:site_name">
+        <title>Карта подозрительных УИКов</title>
     </head>
     <body>
         <div id="map" style="width:100%;height:100%;"></div>
 
         <div class="b-legend">
-            <h4 class="b-legend__header">Карта результатов голосования за Сергея Собянина</h4>
+            <h4 class="b-legend__header">Карта подозрительных УИКов</h4>
 
-            <p>На карте отмечены УИКи с результатами голосования за Сергея Собянина.</p>
+            <p>Карта УИКов, отмеченных разным цветом. Цвет зависимости от того, какой результат был у Сергея Собянина, и были ли на участке наблюдатели.</p>
             <p><b>Типы точек:</b></p>
             <table class="b-legend__items">
                 <tr>
                     <td class="b-legend__items-term"><img src="/images/warning.png" alt="" /></td>
-                    <td class="b-legend__items-description">УИК, где С.С. Собянин набрал более 50% голосов при отсутствии наблюдателей</td>
+                    <td class="b-legend__items-description">УИК, где С.С. Собянин набрал более <span class="j-threshold-value">55</span>% голосов при отсутствии наблюдателей</td>
                 </tr>
                 <tr>
                     <td class="b-legend__items-term"><img src="/images/alert.png" alt="" /></td>
-                    <td class="b-legend__items-description">УИК, где С.С. Собянин набрал более 50% голосов при наличии наблюдателей</td>
+                    <td class="b-legend__items-description">УИК, где С.С. Собянин набрал более <span class="j-threshold-value">55</span>% голосов при наличии наблюдателей</td>
                 </tr>
                 <tr>
                     <td class="b-legend__items-term"><img src="/images/info.png" alt="" /></td>
-                    <td class="b-legend__items-description">УИК, где С.С. Собянин набрал менее 50% голосов</td>
+                    <td class="b-legend__items-description">УИК, где С.С. Собянин набрал менее <span class="j-threshold-value">55</span>% голосов</td>
                 </tr>
             </table>
+
+            <div class="b-legend__social-block">
+                <script type="text/javascript">(function() {
+                    if (window.pluso)if (typeof window.pluso.start == "function") return;
+                    if (window.ifpluso==undefined) { window.ifpluso = 1;
+                        var d = document, s = d.createElement('script'), g = 'getElementsByTagName';
+                        s.type = 'text/javascript'; s.charset='UTF-8'; s.async = true;
+                        s.src = ('https:' == window.location.protocol ? 'https' : 'http')  + '://share.pluso.ru/pluso-like.js';
+                        var h=d[g]('body')[0];
+                        h.appendChild(s);
+                    }})();</script>
+                <div class="pluso" data-background="none;" 
+                     data-options="small,square,line,horizontal,counter,sepcounter=1,theme=14" 
+                     data-services="vkontakte,odnoklassniki,facebook,twitter" 
+                     data-url="http://sobyanin2procenta.info" data-title="Карта подозрительных УИКов"
+                     data-description="Карта УИКов, отмеченных разным цветом. Цвет зависимости от того, какой результат был у Сергея Собянина, и были ли на участке наблюдатели.">
+                </div>
+            </div>
         </div>
 
         <div class="b-legend-mobile">
@@ -52,9 +79,9 @@
                     <td class="b-legend__items-term"><img src="/images/info.png" alt="" /></td>
                 </tr>
                 <tr>
-                    <td class="b-legend__items-description">УИК, где С.С. Собянин набрал более 50% голосов при отсутствии наблюдателей</td>
-                    <td class="b-legend__items-description">УИК, где С.С. Собянин набрал более 50% голосов при наличии наблюдателей</td>
-                    <td class="b-legend__items-description">УИК, где С.С. Собянин набрал менее 50% голосов</td>
+                    <td class="b-legend__items-description">УИК, где С.С. Собянин набрал более <span class="j-threshold-value">55</span>% голосов при отсутствии наблюдателей</td>
+                    <td class="b-legend__items-description">УИК, где С.С. Собянин набрал более <span class="j-threshold-value">55</span>% голосов при наличии наблюдателей</td>
+                    <td class="b-legend__items-description">УИК, где С.С. Собянин набрал менее <span class="j-threshold-value">55</span>% голосов</td>
                 </tr>
             </table>
         </div>

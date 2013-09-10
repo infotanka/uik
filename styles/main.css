@@ -64,3 +64,7 @@ body {
         font-size: 12px;
     }
 }
+
+.b-legend__social-block {
+    padding: 10px 5px;
+}

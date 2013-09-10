@@ -7,6 +7,8 @@ $(function() {
         };
         var map = new google.maps.Map(document.getElementById("map"), mapOptions);
         
+        var threshold = 55;
+        
         var infoIcon = new google.maps.MarkerImage(
             "images/info.png",
             new google.maps.Size(8, 8),
@@ -35,7 +37,7 @@ $(function() {
             $(data).each(function(idx, uik) {
                 var icon = infoIcon;
                 
-                if (uik.sobyaninPercents > 50) {
+                if (uik.sobyaninPercents > threshold) {
                     if (uik.total == 0) {
                         icon = warningIcon;
                     } else {
