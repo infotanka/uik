@@ -15,7 +15,6 @@ $(function() {
     function renderThresholdValue() {
         $('.j-threshold-value').text(threshold);
         $('.j-outdoor-threshold-value').text(outdoorThreshhold);
-        console.log(threshold, outdoorThreshhold);
         map.render(threshold, outdoorThreshhold);
     }
     
@@ -33,7 +32,6 @@ $(function() {
         max: 9,
         value: outdoorThreshhold
     }).on('slideStop', function(event) {
-        console.log(event.value);
         outdoorThreshhold = event.value;
         renderThresholdValue();
     });
