@@ -34,21 +34,15 @@ $(function() {
             
             $(data).each(function(idx, uik) {
                 var icon = infoIcon;
-                var color = '';
-                var icon = 'twirl#blueIcon';
-                var color = '';
                 
                 if (uik.sobyaninPercents > 50) {
                     if (uik.total == 0) {
                         icon = warningIcon;
-                        color = 'red';
                     } else {
                         icon = alertIcon;
-                        color = 'red';
                     }
                 } else {
                     icon = infoIcon;
-                    color = 'lightblue';
                 }
                 
                 var marker = new google.maps.Marker({
@@ -59,7 +53,11 @@ $(function() {
                 });
                 
                 var contentString = '<h5>УИК №' + uik.uic + '</h5><div>Результат С. Собянина: ' + uik.sobyaninPercents +'%</div>';
-                contentString = contentString + '<div>Количество наблюдателей: '+uik.total+'</div>';
+                contentString = contentString + '<div>Наблюдателей: '+uik.total+'</div>';
+                contentString = contentString + '<div>Членов комиссии с ПРГ: '+uik.uic_prg+'</div>';
+                contentString = contentString + '<div>Членов комиссии с ПCГ: '+uik.uic_psg+'</div>';
+                contentString = contentString + '<div>Журналистов: '+uik.journalist+'</div>';
+
                 var infoWindow = new google.maps.InfoWindow({
                     content: contentString
                 });
