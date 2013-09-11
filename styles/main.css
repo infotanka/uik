@@ -48,9 +48,8 @@ body {
     .b-legend {
         display: none;
     }
-    .b-legend__items-term {
-        text-align: center;
-        width: auto;
+    .b-legend__colors {
+        padding: 0px 5px
     }
     .b-legend-mobile {
         display: block;
@@ -70,11 +69,18 @@ body {
     .b-legend__items {
         margin: 0 5px;
     }
-    .b-legend-mobile table {
+    .b-legend-mobile, .b-legend-mobile p {
         font-size: 12px;
+    }
+    .b-legend__colors-image {
+        width: 50px;
+        height: 50px;
     }
 }
 
 .b-legend__social-block {
     padding: 10px 5px;
+}
+
+.b-legend__colors-description {
 }
