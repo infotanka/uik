@@ -101,7 +101,7 @@ var UicsMap = function(mapElement, options) {
                         openedInfoWindow = infoWindow;
                     });
 
-                    google.maps.event.addListener(map, 'zoom_changed', function() {
+                    var checkZoom = function() {
                         var zoom = map.getZoom();
                         var relativePixelSize = 8*zoom*zoom/100;
 
@@ -115,7 +115,9 @@ var UicsMap = function(mapElement, options) {
                                 new google.maps.Size(relativePixelSize, relativePixelSize) //changes the scale
                             )
                         );
-                    });
+                    };
+                    google.maps.event.addListener(map, 'zoom_changed', checkZoom);
+                    checkZoom();
                     
                     markers.push(marker);
                 });
