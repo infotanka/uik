@@ -48,17 +48,25 @@
         <div class="b-legend">
             <h4 class="b-legend__header">Карта подозрительных УИКов</h4>
 
-            <p>Карта УИКов, отмеченных разным цветом. Цвет зависит от того, какой результат был у Сергея Собянина, и были ли на участке наблюдатели.</p>
+            <p>
+                Цвет зависит от подозрительности участка: были ли на участке наблюдатели, какой был % голосования на дому.
+                Размер кружка от % голосов за С. Собянина.
+            </p>
             <p><b>Цвет точек:</b></p>
 
             <div class="b-legend__colors">
                 <div class="b-legend__colors-description">
-                    <span>кол-во наблюдателей</span> <span class="glyphicon glyphicon-arrow-down"></span>
-                </div>
+                    <span class="b-legend__right-axis">кол-во наблюдателей ↓</span>
+                    <span class="b-legend__top-color-label">0</span>
+                    <span class="b-legend__bottom-color-label">8</span>
 
-                <img src="images/colors.jpg" alt="" class="b-legend__colors-image">
-                <div>
-                    <span>кол-во надомников</span> <span class="glyphicon glyphicon-arrow-right"></span>
+
+                    <img src="images/colors.jpg" alt="" class="b-legend__colors-image">
+                    <div>
+                        <span class="b-legend__left-color-label">0</span>
+                        <span class="b-legend__right-color-label">100</span>
+                        <span class="b-legend__bottom-axis">% надомного голосования →</span>
+                    </div>
                 </div>
             </div>
 
@@ -66,7 +74,24 @@
                 <br>
                 <p>Размер точки зависит от кол-ва процентов, набранных С. Собяниным</p>
             </div>
-            
+
+            <b>Примеры:</b>
+
+            <table class="b-legend__examples">
+                <tr>
+                    <td class="b-legend__example-image"><img src="images/example-red.png" alt=""></td>
+                    <td class="b-legend__example-description">
+                        100% голосов за С. Собянина при 100% надомного голосования без наблюдателей
+                    </td>
+                </tr>
+                <tr>
+                    <td class="b-legend__example-image"><img src="images/example-green.png" alt=""></td>
+                    <td class="b-legend__example-description">
+                        48,3% голосов за С. Собянина при 2.43% надомного голосования. Наблюдателей: 4
+                    </td>
+                </tr>
+            </table>
+
             <div class="b-legend__download-block">
                 <a href="https://dl.dropboxusercontent.com/u/210432/uik_results_moscow_mayor_election_2013.xlsx" target="_blank">
                     Исходные данные
@@ -96,22 +121,50 @@
             <div class="b-legend-mobile__header">
                 Карта результатов голосования за Сергея Собянина <a class="j-close-legend" href="#" title="Закрыть легенду">×</a>
             </div>
-            <div class="b-legend__colors">
-                <b>Цвет точек:</b>
 
-                <div class="b-legend__colors-description">
-                    <span>кол-во наблюдателей</span> <span class="glyphicon glyphicon-arrow-down"></span>
+            <div class="b-legend-mobile__content">
+
+
+                <p><b>Цвет точек:</b></p>
+
+                <div class="b-legend__colors">
+                    <div class="b-legend__colors-description">
+                        <span class="b-legend__right-axis">кол-во наблюдателей ↓</span>
+                        <span class="b-legend__top-color-label">0</span>
+                        <span class="b-legend__bottom-color-label">8</span>
+
+
+                        <img src="images/colors.jpg" alt="" class="b-legend__colors-image">
+                        <div>
+                            <span class="b-legend__left-color-label">0</span>
+                            <span class="b-legend__right-color-label">100</span>
+                            <span class="b-legend__bottom-axis">% надомного голосования →</span>
+                        </div>
+                    </div>
                 </div>
 
-                <img src="images/colors.jpg" alt="" class="b-legend__colors-image">
                 <div>
-                    <span>кол-во надомников</span> <span class="glyphicon glyphicon-arrow-right"></span>
-                </div>
-                <div>
+                    <br>
                     <p>Размер точки зависит от кол-ва процентов, набранных С. Собяниным</p>
                 </div>
-            </div>
 
+                <b>Примеры:</b>
+
+                <table class="b-legend__examples">
+                    <tr>
+                        <td class="b-legend__example-image"><img src="images/example-red.png" alt=""></td>
+                        <td class="b-legend__example-description">
+                            100% голосов за С. Собянина при 100% надомного голосования без наблюдателей
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="b-legend__example-image"><img src="images/example-green.png" alt=""></td>
+                        <td class="b-legend__example-description">
+                            48,3% голосов за С. Собянина при 2.43% надомного голосования. Наблюдателей: 4
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </body>
 </html>

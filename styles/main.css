@@ -1,15 +1,18 @@
 body {
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    height: 100%;
+    position: relative;
 }
 
 .b-legend {
     position: absolute;
-    border: 1px solid #CACABC;
+    border-left: 1px solid #CACABC;
     background-color: #fffffd;
-    width: 250px;
+    width: 350px;
     position: absolute;
-    top: 70px;
-    right: 30px;
+    top: 0px;
+    right: 0px;
+    height: 100%;
     padding: 10px;
     font-size: 13px;
 }
@@ -21,7 +24,7 @@ body {
 }
 .b-legend__header {
     font-weight: bold;
-    font-size: 14px;
+    font-size: 16px;
 }
 .b-legend__items-description {
     font-size: 12px;
@@ -42,6 +45,66 @@ body {
 .b-legend__download-block {
     padding-top: 5px;
     padding-bottom: 10px;
+}
+
+.b-legend__colors-description {
+    position: relative;
+    margin-left: 90px;
+}
+.b-legend__right-axis {
+    font-size: 12px;
+    text-align: right;
+    position: absolute;
+    width: 90px;
+    left: -90px;
+    top: 50px;
+}
+.b-legend__colors-image {
+    margin-left: 10px;
+    width: 130px;
+    height: 130px;
+}
+.b-legend__top-color-label {
+    font-size: 12px;
+    position: absolute;
+    left: 0px;
+    top: -1px;
+}
+.b-legend__bottom-color-label {
+    font-size: 12px;
+    position: absolute;
+    left: 0px;
+    top: 114px;
+}
+.b-legend__left-color-label {
+    font-size: 12px;
+    position: absolute;
+    left: 11px;
+    top: 128px;
+}
+.b-legend__right-color-label {
+    font-size: 12px;
+    position: absolute;
+    left: 120px;
+    top: 128px;
+}
+.b-legend__bottom-axis {
+    font-size: 12px;
+    margin-top: 10px;
+    display: block;
+}
+
+.b-legend__example-image {
+    width: 35px;
+    text-align: center;
+    vertical-align: middle;
+}
+.b-legend__examples {
+    margin-top: 5px;
+    font-size: 12px;
+}
+.b-legend__example-description {
+    padding-bottom: 5px;
 }
 
 @media (max-width: 767px) {
@@ -73,8 +136,33 @@ body {
         font-size: 12px;
     }
     .b-legend__colors-image {
-        width: 50px;
-        height: 50px;
+        width: 80px;
+        height: 80px;
+    }
+
+    .b-legend__right-axis {
+        left: -96px;
+        top: 12px;
+    }
+    .b-legend__bottom-color-label {
+        top: 65px;
+    }
+
+    .b-legend__bottom-color-label {
+        top: -3px;
+    }
+    .b-legend__bottom-color-label {
+        top: 65px;
+    }
+    .b-legend__left-color-label {
+        top: 78px;
+    }
+    .b-legend__right-color-label {
+        top: 78px;
+        left: 68px;
+    }
+    .b-legend-mobile__content {
+        padding: 5px;
     }
 }
 
