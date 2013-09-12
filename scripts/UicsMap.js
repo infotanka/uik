@@ -34,7 +34,9 @@ var UicsMap = function(mapElement, options) {
         var color = getUicColor(uic);
         return {
             path: google.maps.SymbolPath.CIRCLE,
-            strokeColor: color,
+            strokeOpacity: 0.2,
+            strokeColor: '#ffffff',
+            strokeWeight: 2,
             fillColor: color,
             fillOpacity: 1,
             scale: getUicScale(uic)
