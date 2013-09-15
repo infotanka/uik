@@ -1,28 +1,18 @@
 var UicsMap = function(mapElement, options) {
     
     var canvasContext = null;
-    var colorsMapSize = 159;
-    
-    var maxWatchers = 8;
-    var maxOutdoor = 100;
     
     var minScale = 1;
     var maxScale = 10;
     var minPercent = 40;
-    
-    
+
     var getUicColor = function(uic) {
-        var watchersPart = (maxWatchers - uic.total) / maxWatchers;
-        var outdoorPart = uic.outdoorPercents / maxOutdoor;
-        
-        var pixel = canvasContext.getImageData(
-            Math.ceil(outdoorPart * colorsMapSize), 
-            Math.ceil(watchersPart * colorsMapSize),
-            1,
-            1
-        ).data; 
-            
-        return 'rgb('+pixel[0]+','+pixel[1]+','+pixel[2]+')';
+        switch ( uic.total ) {
+            case 0: return 'rgb(211,56,0)';
+            case 1: return 'rgb(232,204,0)';
+            case 2: return 'rgb(234,239,0)';
+            default: return 'rgb(109,193,55)';
+        }
     }
     
     var getUicScale = function(uic) {

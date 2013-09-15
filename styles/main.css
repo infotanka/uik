@@ -172,3 +172,25 @@ body {
 
 .b-legend__colors-description {
 }
+
+table.legend {
+    margin: 0 auto;
+    width: 230px;
+}
+table.legend td {
+    padding: 0;
+    margin: 0;
+}
+table.legend td.info {
+    font-size: 12px;
+    text-align: center;
+}
+table.legend td.square {
+    font-size: 1px;
+}
+table.legend td.square div {
+    font-size: 1px;
+    display: block;
+    width: 16px;
+    height: 16px;
+}
