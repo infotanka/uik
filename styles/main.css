@@ -192,6 +192,7 @@ table.legend .current {
 table.legend .current a {
     border-bottom: 0 none;
     cursor: default;
+    color: black;
 }
 table.legend tr {
     height: 20px;
