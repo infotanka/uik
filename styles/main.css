@@ -178,6 +178,20 @@ body {
 table.legend {
     margin: 0 auto;
     width: 300px;
+    color: #999;
+}
+table.legend a {
+    cursor: pointer;
+    text-decoration: none;
+    border-bottom: 1px dashed #39F;
+    color: #39F;
+}
+table.legend .current {
+    color: black;
+}
+table.legend .current a {
+    border-bottom: 0 none;
+    cursor: default;
 }
 table.legend tr {
     height: 20px;

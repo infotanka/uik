@@ -16,7 +16,7 @@
         <script src="scripts/UicsMap.js?v=6" type="text/javascript"></script>
         <script src="scripts/main.js" type="text/javascript"></script>
 
-        <link href="styles/main.css?v=5" rel="stylesheet">
+        <link href="styles/main.css?v=6" rel="stylesheet">
 
         <meta content="Карта УИКов, отмеченных разным цветом. Цвет зависимости от того, какой результат был у Сергея Собянина, и были ли на участке наблюдатели." name="description">
         <meta content="Карта подозрительных УИКов" name="title">
@@ -62,15 +62,19 @@
                         <td class="square"><div style="background-color:rgb(234,239,0);"></div></td>
                         <td class="square"><div style="background-color:rgb(109,193,55);"></div></td>
                     </tr>
-                    <tr class="j-observers">
-                        <td class="info first">Кол-во наблюдателей →</td>
+                    <tr class="j-observers current">
+                        <td class="info first">
+                            <a href="#" onclick="setPalette('observers'); return false;">Кол-во наблюдателей →</a>
+                        </td>
                         <td class="info">0</td>
                         <td class="info">1</td>
                         <td class="info">2</td>
                         <td class="info">3+</td>
                     </tr>
                     <tr class="j-outdoor">
-                        <td class="info first">Голосующих на дому →</td>
+                        <td class="info first">
+                            <a href="#" onclick="setPalette('outdoor'); return false;">Голосующих на дому →</a>
+                        </td>
                         <td class="info">&gt; 20%</td>
                         <td class="info">&gt; 10%</td>
                         <td class="info">&gt; 5%</td>
