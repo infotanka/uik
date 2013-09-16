@@ -44,7 +44,7 @@ var getIcon = function (uic) {
 
 var setPalette = function (palette) {
     $('.j-line').removeClass('current');
-    $('.s-' + palette).addClass('current');
+    $('.j-' + palette).addClass('current');
     $(markers).each(function (index, marker) {
         var icon = getIcon(marker.uik);
         icon.fillColor = getUicColor(marker.uik, palette);
