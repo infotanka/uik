@@ -8,9 +8,9 @@ var UicsMap = function (mapElement, options) {
 
     var getUicColor = function (uic) {
         var p = uic.outdoorPercent;
-        if (outdoorPercent > 20) return 'rgb(211,56,0)';
-        if (outdoorPercent > 10) return 'rgb(232,204,0)';
-        if (outdoorPercent > 5) return 'rgb(234,239,0)';
+        if (p > 20) return 'rgb(211,56,0)';
+        if (p > 10) return 'rgb(232,204,0)';
+        if (p > 5) return 'rgb(234,239,0)';
         return 'rgb(109,193,55)';
     };
 
