@@ -48,7 +48,7 @@
             <h4 class="b-legend__header">Карта подозрительных УИКов</h4>
 
             <p>
-                Цвет зависит от подозрительности участка: были ли на участке наблюдатели.
+                Цвет зависит от подозрительности участка: сколько было наблюдателей и сколько проголосоваших на дому.
                 Размер кружка зависит от % голосов за С. Собянина.
             </p>
             <p><b>Цвет точек:</b></p>
@@ -62,12 +62,19 @@
                         <td class="square"><div style="background-color:rgb(234,239,0);"></div></td>
                         <td class="square"><div style="background-color:rgb(109,193,55);"></div></td>
                     </tr>
-                    <tr>
+                    <tr class="j-observers">
                         <td class="info">Кол-во наблюдателей →</td>
                         <td class="info">0</td>
                         <td class="info">1</td>
                         <td class="info">2</td>
                         <td class="info">3+</td>
+                    </tr>
+                    <tr class="j-outdoor">
+                        <td class="info">Голосующих на дому →</td>
+                        <td class="info">&gt; 20%</td>
+                        <td class="info">&gt; 10%</td>
+                        <td class="info">&gt; 5%</td>
+                        <td class="info">&lt;= 5%</td>
                     </tr>
                 </table>
             </div>
