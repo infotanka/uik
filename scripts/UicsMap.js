@@ -54,8 +54,8 @@ var UicsMap = function (mapElement, options) {
              var canvas = $("#canvas");
              canvasContext = canvas.get(0).getContext("2d");
              canvasContext.drawImage(img, 0, 0);
-             loadingDeferred.resolve();
              }*/
+            loadingDeferred.resolve();
         });
     }
 
