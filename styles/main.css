@@ -4,6 +4,8 @@ body {
     position: relative;
 }
 
+
+
 .b-legend {
     position: absolute;
     border-left: 1px solid #CACABC;
@@ -175,7 +177,10 @@ body {
 
 table.legend {
     margin: 0 auto;
-    width: 230px;
+    width: 300px;
+}
+table.legend tr {
+    height: 20px;
 }
 table.legend td {
     padding: 0;
@@ -185,10 +190,15 @@ table.legend td.info {
     font-size: 12px;
     text-align: center;
 }
+table.legend td.first {
+    text-align: right;
+    width: 160px;
+}
 table.legend td.square {
     font-size: 1px;
 }
 table.legend td.square div {
+    margin: 0 auto;
     font-size: 1px;
     display: block;
     width: 16px;
