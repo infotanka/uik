@@ -1,4 +1,4 @@
-$(function() {
+$(function () {
     var map = new UicsMap(
         document.getElementById("map"),
         {
@@ -8,7 +8,7 @@ $(function() {
         }
     );
 
-    $('.j-close-legend').click(function() {
+    $('.j-close-legend').click(function () {
         $('.j-legend-mobile').hide();
     });
 
