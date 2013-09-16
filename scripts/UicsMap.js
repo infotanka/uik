@@ -7,7 +7,7 @@ var UicsMap = function (mapElement, options) {
     var minPercent = 40;
 
     var getUicColor = function (uic) {
-        var p = uic.outdoorPercent;
+        var p = uic.outdoorPercents;
         if (p > 20) return 'rgb(211,56,0)';
         if (p > 10) return 'rgb(232,204,0)';
         if (p > 5) return 'rgb(234,239,0)';
