@@ -1,7 +1,5 @@
 var UicsMap = function (mapElement, options) {
 
-    var minPercent = 30;
-
     var getUicColor = function (uic) {
         var p = uic.outdoorPercents;
         if (p > 20) return 'rgb(211,56,0)';
@@ -10,15 +8,8 @@ var UicsMap = function (mapElement, options) {
         return 'rgb(109,193,55)';
     };
 
-    /* radius scale. was [2;7.4] for [40;100], but will be quadratic */
-    /* [0.75;7.5] [30;100] */
     var getUicScale = function (uic) {
-        // [30;100] -> [0;70]
-        var diff = uic.sobyaninPercents - minPercent;
-        // too small percent
-        if (diff < 0) return 2;
-        // [0;70] -> [2;7.5]
-        return 2 + Math.sqrt(diff) / 1.52;
+        return Math.sqrt(uic.sobyaninPercents);
     };
 
     var getIcon = function (uic) {
