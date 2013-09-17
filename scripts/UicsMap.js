@@ -28,7 +28,7 @@ var getUicColor = function (uic, palette) {
 var getUicScale = function (uic) {
     var p = uic.sobyaninPercents - 27;
     if (p < 1) p = 1;
-    return Math.sqrt(p);
+    return Math.sqrt(p) * 0.8;
 };
 
 var getIcon = function (uic) {
