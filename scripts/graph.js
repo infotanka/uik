@@ -135,7 +135,7 @@ $.get('http://devgru.github.io/uik/uiks.json', function (data) {
     newbies
         .append('circle')
         .attr('cx',function (uik) {
-            return xObservers(uik.observer);
+            return xObservers(uik.observer +  + uik.sobyaninPercents/100);
         })
         .attr('cy',function (uik) {
             if (uik.outdoorPercents == 0) return yOutdoor(minY) + y0Offset;
@@ -146,6 +146,7 @@ $.get('http://devgru.github.io/uik/uiks.json', function (data) {
             return Math.sqrt(uik.sobyaninPercents);
         });
 
+    /*
     newbies
         .append('circle')
         .attr('cx',function (uik) {
@@ -158,6 +159,7 @@ $.get('http://devgru.github.io/uik/uiks.json', function (data) {
         .attr('fill', 'transparent')
         .attr('stroke', 'rgb(200,200,200)')
         .attr('r', 10);
+    */
 
 });
 
