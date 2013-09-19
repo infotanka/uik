@@ -33,33 +33,44 @@ var margin = {top: 20, right: 30, bottom: 80, left: 50},
     height = 500 - margin.top - margin.bottom;
 
 var minY = 0.1;
-var y = d3.scale.log()
+var y0Offset = 20;
+
+var yOutdoor = d3.scale.log()
     .domain([minY, 100])
     .range([height, 0]);
 
 var y0 = d3.scale.ordinal()
     .domain([0])
-    .range([height + 20]);
+    .range([height + y0Offset]);
 
 var y0Axis = d3.svg.axis()
     .scale(y0)
     .orient("left");
 
-var x = d3.scale.linear()
+var xSobyanin = d3.scale.linear()
     .domain([30, 100])
     .range([0, width]);
 
-var xAxis = d3.svg.axis()
-    .scale(x)
+var xObservers = d3.scale.linear()
+    .domain([0, 10])
+    .range([0, width]);
+
+var xSobyaninAxis = d3.svg.axis()
+    .scale(xSobyanin)
+    .orient("bottom");
+
+var xObserversAxis = d3.svg.axis()
+    .scale(xObservers)
     .orient("bottom");
 
 var yAxis = d3.svg.axis()
-    .scale(y)
+    .scale(yOutdoor)
     .orient("left")
     .ticks(20, d3.format(",.1s"));
 
-function createSvg(clz) {
-    var svg = d3.select("body").append("svg").classed(clz, true)
+$.get('http://devgru.github.io/uik/uiks.json', function (data) {
+    var svg;
+    svg = d3.select("body").append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
@@ -71,36 +82,62 @@ function createSvg(clz) {
 
     svg.append("g")
         .attr("class", "x axis")
-        .attr("transform", "translate(0," + (height + 20) + ")")
-        .call(xAxis);
+        .attr("transform", "translate(0," + (height + y0Offset) + ")")
+        .call(xSobyaninAxis);
 
     svg.append("g")
         .attr("class", "y-zero axis")
         .call(y0Axis);
 
-    return svg;
-}
-$.get('http://devgru.github.io/uik/uiks.json', function (data) {
-    /*
-    createSvg('diff').selectAll('circle').data(data).enter().append('circle')
+    svg
+        .selectAll('circle')
+        .data(data)
+        .enter()
+        .append('circle')
         .attr('cx',function (uik) {
-            return x(uik.sobyaninPercents);
+            return xSobyanin(uik.sobyaninPercents);
         }).attr('cy',function (uik) {
-            if (uik.outdoorPercents == 0) return y(minY) + 20;
-            return y(uik.outdoorPercents);
-        }).attr('fill',function (uik) {
-            return getUicColor(uik, 'observers');
-        }).attr('r', getUicScale);
-*/
-    createSvg('undiff').selectAll('circle').data(data).enter().append('circle')
-        .attr('cx',function (uik) {
-            return x(uik.sobyaninPercents);
-        }).attr('cy',function (uik) {
-            if (uik.outdoorPercents == 0) return y(minY) + 20;
-            console.log(uik.outdoorPercents, y(uik.outdoorPercents));
-            return y(uik.outdoorPercents);
+            if (uik.outdoorPercents == 0) return yOutdoor(minY) + y0Offset;
+            console.log(uik.outdoorPercents, yOutdoor(uik.outdoorPercents));
+            return yOutdoor(uik.outdoorPercents);
         }).attr('fill',function (uik) {
             return getUicColor(uik, 'observers');
         }).attr('r', 2);
+
+
+    svg = d3.select("body").append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    svg.append("g")
+        .attr("class", "y axis")
+        .call(yAxis);
+
+    svg.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + (height + y0Offset) + ")")
+        .call(xObserversAxis);
+
+    svg.append("g")
+        .attr("class", "y-zero axis")
+        .call(y0Axis);
+
+
+    svg
+        .selectAll('circle')
+        .data(data)
+        .enter()
+        .append('circle')
+        .attr('cx',function (uik) {
+            return xObservers(uik.observer);
+        }).attr('cy',function (uik) {
+            if (uik.outdoorPercents == 0) return yOutdoor(minY) + y0Offset;
+            console.log(uik.outdoorPercents, yOutdoor(uik.outdoorPercents));
+            return yOutdoor(uik.outdoorPercents);
+        }).attr('fill', 'gray').attr('r', function (uik) {
+            return 0.5 + Math.sqrt(uik.sobyaninPercents);
+        });
 });
 
