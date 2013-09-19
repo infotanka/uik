@@ -22,30 +22,36 @@ var getUicColor = function (uic, palette) {
     return GREEN;
 };
 
-var getUicScale = function (uic) {
-    var p = uic.sobyaninPercents - 27;
-    if (p < 1) p = 1;
-    return Math.sqrt(p) * 0.8;
-};
-
+// размеры рабочей области
 var margin = {top: 20, right: 30, bottom: 80, left: 50},
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
 var minY = 0.1;
-var y0Offset = 20;
 
+// лог-шкала надомного голосования
 var yOutdoor = d3.scale.log()
     .domain([minY, 100])
     .range([height, 0]);
 
+// отступ для нуля на лог-шкале
+var y0Offset = 20;
+
+// нуль
 var y0 = d3.scale.ordinal()
     .domain([0])
     .range([height + y0Offset]);
 
+// рисуем ось для нуля
 var y0Axis = d3.svg.axis()
     .scale(y0)
     .orient("left");
+
+// рисуем основную ось
+var yOutdoorAxis = d3.svg.axis()
+    .scale(yOutdoor)
+    .orient("left")
+    .ticks(20, d3.format(",.1s"));
 
 var xSobyanin = d3.scale.linear()
     .domain([30, 100])
@@ -63,11 +69,6 @@ var xObserversAxis = d3.svg.axis()
     .scale(xObservers)
     .orient("bottom");
 
-var yAxis = d3.svg.axis()
-    .scale(yOutdoor)
-    .orient("left")
-    .ticks(20, d3.format(",.1s"));
-
 $.get('http://devgru.github.io/uik/uiks.json', function (data) {
 
 //    data = data.slice(0, 50);
@@ -81,7 +82,7 @@ $.get('http://devgru.github.io/uik/uiks.json', function (data) {
 
     svg.append("g")
         .attr("class", "y axis")
-        .call(yAxis);
+        .call(yOutdoorAxis);
 
     svg.append("g")
         .attr("class", "x axis")
@@ -115,7 +116,7 @@ $.get('http://devgru.github.io/uik/uiks.json', function (data) {
 
     svg.append("g")
         .attr("class", "y axis")
-        .call(yAxis);
+        .call(yOutdoorAxis);
 
     svg.append("g")
         .attr("class", "x axis")
@@ -132,6 +133,11 @@ $.get('http://devgru.github.io/uik/uiks.json', function (data) {
         .data(data)
         .enter();
 
+    var colorScale = d3.scale.linear()
+        .domain(0, 100)
+        .interpolate(d3.interpolateHcl)
+        .range(["#008000","#8000"]);
+
     newbies
         .append('circle')
         .attr('cx',function (uik) {
@@ -141,10 +147,8 @@ $.get('http://devgru.github.io/uik/uiks.json', function (data) {
             if (uik.outdoorPercents == 0) return yOutdoor(minY) + y0Offset;
             return yOutdoor(uik.outdoorPercents);
         })
-        .attr('fill', 'rgb(180,180,180)')
-        .attr('r', function (uik) {
-            return Math.sqrt(uik.sobyaninPercents);
-        });
+        .attr('fill', colorScale)
+        .attr('r', 2);
 
     /*
     newbies
