@@ -148,8 +148,6 @@ $.get('http://devgru.github.io/uik/uiks.json', function (data) {
             if (uik.outdoorPercents == 0) return yOutdoor(minY) + y0Offset;
             return yOutdoor(uik.outdoorPercents);
         }).attr('stroke', 'gray').attr('r', 5);
-});
-
 
 });
 
