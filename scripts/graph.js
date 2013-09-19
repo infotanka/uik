@@ -49,7 +49,7 @@ var yAxis = d3.svg.axis()
     .orient("left");
 
 function createSvg(clz) {
-    var svg = d3.select("body").append("svg").classed(clz)
+    var svg = d3.select("body").append("svg").classed(clz, true)
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
