@@ -69,6 +69,9 @@ var yAxis = d3.svg.axis()
     .ticks(20, d3.format(",.1s"));
 
 $.get('http://devgru.github.io/uik/uiks.json', function (data) {
+
+    data = data.slice(0, 50);
+
     var svg;
     svg = d3.select("body").append("svg")
         .attr("width", width + margin.left + margin.right)
