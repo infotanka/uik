@@ -36,7 +36,6 @@ var minY = 1;
 var y = d3.scale.log()
     .domain([minY, 100])
     .range([height, 0])
-    .ticks(20, d3.format(",.1s"));
 
 var y0 = d3.scale.ordinal()
     .domain([0])
