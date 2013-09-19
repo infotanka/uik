@@ -35,8 +35,7 @@ var margin = {top: 20, right: 30, bottom: 80, left: 50},
 var minY = 1;
 var y = d3.scale.log()
     .domain([minY, 100])
-    .range([height, 0])
-    .ticks(20, d3.format(",.1s"));
+    .range([height, 0]);
 
 var y0 = d3.scale.ordinal()
     .domain([0])
@@ -56,7 +55,8 @@ var xAxis = d3.svg.axis()
 
 var yAxis = d3.svg.axis()
     .scale(y)
-    .orient("left");
+    .orient("left")
+    .ticks(20, d3.format(",.1s"));
 
 function createSvg(clz) {
     var svg = d3.select("body").append("svg").classed(clz, true)
