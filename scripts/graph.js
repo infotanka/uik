@@ -28,7 +28,7 @@ var getUicScale = function (uic) {
     return Math.sqrt(p) * 0.8;
 };
 
-var margin = {top: 20, right: 30, bottom: 20, left: 50},
+var margin = {top: 20, right: 30, bottom: 80, left: 50},
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
@@ -80,6 +80,7 @@ function createSvg(clz) {
     return svg;
 }
 $.get('http://devgru.github.io/uik/uiks.json', function (data) {
+    /*
     createSvg('diff').selectAll('circle').data(data).enter().append('circle')
         .attr('cx',function (uik) {
             return x(uik.sobyaninPercents);
@@ -89,7 +90,7 @@ $.get('http://devgru.github.io/uik/uiks.json', function (data) {
         }).attr('fill',function (uik) {
             return getUicColor(uik, 'observers');
         }).attr('r', getUicScale);
-
+*/
     createSvg('undiff').selectAll('circle').data(data).enter().append('circle')
         .attr('cx',function (uik) {
             return x(uik.sobyaninPercents);
@@ -98,6 +99,6 @@ $.get('http://devgru.github.io/uik/uiks.json', function (data) {
             return y(uik.outdoorPercents);
         }).attr('fill',function (uik) {
             return getUicColor(uik, 'observers');
-        }).attr('r', 1.5);
+        }).attr('r', 2);
 });
 
