@@ -92,6 +92,7 @@ $.get('http://devgru.github.io/uik/uiks.json', function (data) {
         .attr('cx',function (uik) {
             return x(uik.sobyaninPercents);
         }).attr('cy',function (uik) {
+            console.log(uik.outdoorPercents, y(uik.outdoorPercents));
             return y(uik.outdoorPercents);
         }).attr('fill',function (uik) {
             return getUicColor(uik, 'observers');
