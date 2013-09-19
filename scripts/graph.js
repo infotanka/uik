@@ -63,7 +63,7 @@ var gx = svg.append("g")
     .attr("transform", "translate(0," + height + ")")
     .call(xAxis);
 
-$.get('http://devgru.github.io/uik/data.json', function (data) {
+$.get('http://devgru.github.io/uik/uiks.json', function (data) {
     var circles = svg.selectAll('circle').data(data);
     circles.enter().append('circle')
         .attr('cx',function (uik) {
