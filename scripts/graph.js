@@ -130,7 +130,7 @@ $.get('http://devgru.github.io/uik/uiks.json', function (data) {
     newbies = svg
         .selectAll('circle')
         .data(data)
-        .enter()
+        .enter();
 
     newbies
         .append('circle')
@@ -140,17 +140,17 @@ $.get('http://devgru.github.io/uik/uiks.json', function (data) {
             if (uik.outdoorPercents == 0) return yOutdoor(minY) + y0Offset;
             return yOutdoor(uik.outdoorPercents);
         }).attr('fill', 'rgb(180,180,180)').attr('r', function (uik) {
-            return Math.sqrt(uik.sobyaninPercents) / 2;
+            return Math.sqrt(uik.sobyaninPercents);
         });
 
     newbies
         .append('circle')
         .attr('cx',function (uik) {
-            return xObservers(uik.observer);
+            return xObservers(uik.observer + uik.sobyaninPercent/100);
         }).attr('cy', function (uik) {
             if (uik.outdoorPercents == 0) return yOutdoor(minY) + y0Offset;
             return yOutdoor(uik.outdoorPercents);
-        }).attr('stroke', 'gray').attr('r', 5);
+        }).attr('stroke', 'rgba(200,200,200,1)').attr('r', 10);
 
 });
 
