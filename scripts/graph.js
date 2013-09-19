@@ -32,7 +32,7 @@ var margin = {top: 20, right: 30, bottom: 20, left: 50},
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
-var minY = 0.1;
+var minY = 1;
 var y = d3.scale.log()
     .domain([minY, 100])
     .range([height, 0]);
@@ -70,7 +70,7 @@ function createSvg(clz) {
 
     svg.append("g")
         .attr("class", "x axis")
-        .attr("transform", "translate(0," + height + ")")
+        .attr("transform", "translate(0," + (height + 20) + ")")
         .call(xAxis);
 
     svg.append("g")
@@ -84,7 +84,7 @@ $.get('http://devgru.github.io/uik/uiks.json', function (data) {
         .attr('cx',function (uik) {
             return x(uik.sobyaninPercents);
         }).attr('cy',function (uik) {
-            if (uik.outdoorPercents == 0) return y(minY);
+            if (uik.outdoorPercents == 0) return y(minY) + 20;
             return y(uik.outdoorPercents);
         }).attr('fill',function (uik) {
             return getUicColor(uik, 'observers');
@@ -94,7 +94,7 @@ $.get('http://devgru.github.io/uik/uiks.json', function (data) {
         .attr('cx',function (uik) {
             return x(uik.sobyaninPercents);
         }).attr('cy',function (uik) {
-            if (uik.outdoorPercents == 0) return y(minY);
+            if (uik.outdoorPercents == 0) return y(minY) + 20;
             return y(uik.outdoorPercents);
         }).attr('fill',function (uik) {
             return getUicColor(uik, 'observers');
