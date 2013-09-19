@@ -146,7 +146,7 @@ $.get('http://devgru.github.io/uik/uiks.json', function (data) {
     newbies
         .append('circle')
         .attr('cx',function (uik) {
-            return xObservers(uik.observer + uik.sobyaninPercent/100);
+            return xObservers(uik.observer + uik.sobyaninPercents/100);
         }).attr('cy', function (uik) {
             if (uik.outdoorPercents == 0) return yOutdoor(minY) + y0Offset;
             return yOutdoor(uik.outdoorPercents);
