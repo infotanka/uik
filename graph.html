@@ -1,0 +1,199 @@
+<html>
+    <head>
+        <meta charset="utf-8"> 
+        <style type="text/css">
+            body {
+                margin: 0;
+            }
+            .axis path,
+            .axis line {
+                fill: none;
+                stroke: #000;
+                shape-rendering: crispEdges;
+            }
+
+            circle {
+                opacity: 0.5;
+            }
+
+            .y.axis path {
+                /*display: none;*/
+            }
+
+            .y.axis line {
+                /*stroke: #777;*/
+            }
+        </style>
+
+        <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCAEt2HQo7hv78IwtbhNFG69_0k_FeI_sA&sensor=true"></script>
+
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.3.3/d3.min.js"></script>
+
+        <link href="styles/main.css?v=7" rel="stylesheet">
+
+        <meta content="Карта УИКов, отмеченных разным цветом. Цвет зависимости от того, какой результат был у Сергея Собянина, и были ли на участке наблюдатели." name="description">
+        <meta content="Карта подозрительных УИКов" name="title">
+        <meta content="sobyanin2procenta.info" property="og:url">
+        <meta content="Карта подозрительных УИКов" property="og:title">
+        <meta content="Карта УИКов, отмеченных разным цветом. Цвет зависит от того, какой результат был у Сергея Собянина, и были ли на участке наблюдатели." property="og:description">
+        <meta content="http://sobyanin2procenta.info/images/image-moscow.png" property="og:image">
+        <meta content="Карта подозрительных УИКов" property="og:site_name">
+        <title>Карта подозрительных УИКов</title>
+    </head>
+    <body>
+
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-43286953-3', 'sobyanin2procenta.info');
+            ga('send', 'pageview');
+
+        </script>
+
+        <div class="b-legend">
+            <h4 class="b-legend__header">График подозрительных УИКов</h4>
+
+            <p>
+                Цвет точки показывает подозрительность участка: сколько было наблюдателей или проголосоваших на дому.
+                Размер кружка зависит от % голосов за С. Собянина.
+            </p>
+            <p><b>Цвет точек:</b></p>
+
+            <div style="text-align: center">
+                <table border="0" class="legend">
+                    <tr>
+                        <td></td>
+                        <td class="square"><div style="background-color:rgb(211,56,0);"></div></td>
+                        <td class="square"><div style="background-color:rgb(232,204,0);"></div></td>
+                        <td class="square"><div style="background-color:rgb(234,239,0);"></div></td>
+                        <td class="square"><div style="background-color:rgb(109,193,55);"></div></td>
+                    </tr>
+                    <tr class="j-line j-observers current">
+                        <td class="info first">
+                            <a href="#" onclick="setPalette('observers'); return false;">Кол-во наблюдателей</a>
+                        </td>
+                        <td class="info">0</td>
+                        <td class="info">1</td>
+                        <td class="info">2</td>
+                        <td class="info">3+</td>
+                    </tr>
+                    <tr class="j-line j-outdoor">
+                        <td class="info first">
+                            <a href="#" onclick="setPalette('outdoor'); return false;">Голосующих на дому</a>
+                        </td>
+                        <td class="info">&gt;&thinsp;20%</td>
+                        <td class="info">&gt;&thinsp;10%</td>
+                        <td class="info">&gt;&thinsp;5%</td>
+                        <td class="info">&lt;=&thinsp;5%</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div>
+                <br>
+                <p>Размер точки зависит от кол-ва процентов, набранных С. Собяниным</p>
+            </div>
+
+            <b>Например:</b>
+
+            <table class="b-legend__examples">
+                <tr>
+                    <td class="b-legend__example-image"><img src="images/example-red.png" alt=""></td>
+                    <td class="b-legend__example-description">
+                        100% голосов за С. Собянина без наблюдателей
+                    </td>
+                </tr>
+                <tr>
+                    <td class="b-legend__example-image"><img src="images/example-green.png" alt=""></td>
+                    <td class="b-legend__example-description">
+                        48,3% голосов за С. Собянина. Наблюдателей: 4
+                    </td>
+                </tr>
+            </table>
+
+            <div class="b-legend__download-block">
+                <a href="https://dl.dropboxusercontent.com/u/210432/uik_results_moscow_mayor_election_2013.xlsx" target="_blank">
+                    Исходные данные
+                </a>
+            </div>
+
+            <div class="b-legend__social-block">
+                <script type="text/javascript">(function() {
+                    if (window.pluso)if (typeof window.pluso.start == "function") return;
+                    if (window.ifpluso==undefined) { window.ifpluso = 1;
+                        var d = document, s = d.createElement('script'), g = 'getElementsByTagName';
+                        s.type = 'text/javascript'; s.charset='UTF-8'; s.async = true;
+                        s.src = ('https:' == window.location.protocol ? 'https' : 'http')  + '://share.pluso.ru/pluso-like.js';
+                        var h=d[g]('body')[0];
+                        h.appendChild(s);
+                    }})();</script>
+                <div class="pluso" data-background="none;" 
+                     data-options="small,square,line,horizontal,counter,sepcounter=1,theme=14" 
+                     data-services="vkontakte,odnoklassniki,facebook,twitter" 
+                     data-url="http://sobyanin2procenta.info" data-title="Карта подозрительных УИКов"
+                     data-description="Карта УИКов, отмеченных разным цветом. Цвет зависимости от того, какой результат был у Сергея Собянина, и были ли на участке наблюдатели.">
+                </div>
+            </div>
+        </div>
+
+        <div class="b-legend-mobile j-legend-mobile">
+            <div class="b-legend-mobile__header">
+                Карта результатов голосования за Сергея Собянина <a class="j-close-legend" href="#" title="Закрыть легенду">×</a>
+            </div>
+
+            <div class="b-legend-mobile__content">
+
+                <p><b>Цвет точек:</b></p>
+
+                <div style="text-align: center">
+                    <table border="0" class="legend">
+                        <tr>
+                            <td></td>
+                            <td class="square"><div style="background-color:rgb(211,56,0);"></div></td>
+                            <td class="square"><div style="background-color:rgb(232,204,0);"></div></td>
+                            <td class="square"><div style="background-color:rgb(234,239,0);"></div></td>
+                            <td class="square"><div style="background-color:rgb(109,193,55);"></div></td>
+                        </tr>
+                        <tr>
+                            <td class="info">Кол-во наблюдателей →</td>
+                            <td class="info">0</td>
+                            <td class="info">1</td>
+                            <td class="info">2</td>
+                            <td class="info">3+</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div>
+                    <br>
+                    <p>Размер точки зависит от кол-ва процентов, набранных С. Собяниным</p>
+                </div>
+
+                <b>Примеры:</b>
+
+                <table class="b-legend__examples">
+                    <tr>
+                        <td class="b-legend__example-image"><img src="images/example-red.png" alt=""></td>
+                        <td class="b-legend__example-description">
+                            100% голосов за С. Собянина без наблюдателей
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="b-legend__example-image"><img src="images/example-green.png" alt=""></td>
+                        <td class="b-legend__example-description">
+                            48,3% голосов за С. Собянина. Наблюдателей: 4
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <script src="scripts/graph.js" type="text/javascript"></script>
+
+    </body>
+</html>
