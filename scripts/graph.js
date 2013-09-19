@@ -124,18 +124,32 @@ $.get('http://devgru.github.io/uik/uiks.json', function (data) {
         .call(y0Axis);
 
 
-    svg
+    newbies = svg
         .selectAll('circle')
         .data(data)
         .enter()
+
+    newbies
         .append('circle')
         .attr('cx',function (uik) {
             return xObservers(uik.observer);
         }).attr('cy',function (uik) {
             if (uik.outdoorPercents == 0) return yOutdoor(minY) + y0Offset;
             return yOutdoor(uik.outdoorPercents);
-        }).attr('fill', 'gray').attr('r', function (uik) {
-            return 0.5 + Math.sqrt(uik.sobyaninPercents);
+        }).attr('fill', 'rgb(180,180,180)').attr('r', function (uik) {
+            return Math.sqrt(uik.sobyaninPercents) / 2;
         });
+
+    newbies
+        .append('circle')
+        .attr('cx',function (uik) {
+            return xObservers(uik.observer);
+        }).attr('cy', function (uik) {
+            if (uik.outdoorPercents == 0) return yOutdoor(minY) + y0Offset;
+            return yOutdoor(uik.outdoorPercents);
+        }).attr('stroke', 'gray').attr('r', 5);
+});
+
+
 });
 
