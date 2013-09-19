@@ -52,7 +52,7 @@ var xSobyanin = d3.scale.linear()
     .range([0, width]);
 
 var xObservers = d3.scale.linear()
-    .domain([0, 4])
+    .domain([0, 5])
     .range([0, width]);
 
 var xSobyaninAxis = d3.svg.axis()
@@ -70,7 +70,7 @@ var yAxis = d3.svg.axis()
 
 $.get('http://devgru.github.io/uik/uiks.json', function (data) {
 
-    data = data.slice(0, 50);
+//    data = data.slice(0, 50);
 
     var svg;
     svg = d3.select("body").append("svg")
@@ -136,10 +136,13 @@ $.get('http://devgru.github.io/uik/uiks.json', function (data) {
         .append('circle')
         .attr('cx',function (uik) {
             return xObservers(uik.observer);
-        }).attr('cy',function (uik) {
+        })
+        .attr('cy',function (uik) {
             if (uik.outdoorPercents == 0) return yOutdoor(minY) + y0Offset;
             return yOutdoor(uik.outdoorPercents);
-        }).attr('fill', 'rgb(180,180,180)').attr('r', function (uik) {
+        })
+        .attr('fill', 'rgb(180,180,180)')
+        .attr('r', function (uik) {
             return Math.sqrt(uik.sobyaninPercents);
         });
 
@@ -147,10 +150,14 @@ $.get('http://devgru.github.io/uik/uiks.json', function (data) {
         .append('circle')
         .attr('cx',function (uik) {
             return xObservers(uik.observer + uik.sobyaninPercents/100);
-        }).attr('cy', function (uik) {
+        })
+        .attr('cy', function (uik) {
             if (uik.outdoorPercents == 0) return yOutdoor(minY) + y0Offset;
             return yOutdoor(uik.outdoorPercents);
-        }).attr('stroke', 'rgba(200,200,200,1)').attr('r', 10);
+        })
+        .attr('fill', 'transparent')
+        .attr('stroke', 'rgb(200,200,200)')
+        .attr('r', 10);
 
 });
 
