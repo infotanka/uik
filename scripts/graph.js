@@ -33,8 +33,16 @@ var margin = {top: 20, right: 30, bottom: 20, left: 50},
     height = 500 - margin.top - margin.bottom;
 
 var y = d3.scale.log()
-    .domain([0, 100])
+    .domain([0.1, 100])
     .range([height, 0]);
+
+var y0 = d3.scale.ordinal()
+    .domain([0])
+    .range([-20]);
+
+var y0Axis = d3.svg.axis()
+    .scale(y0)
+    .orient("bottom");
 
 var x = d3.scale.linear()
     .domain([20, 100])
@@ -55,14 +63,19 @@ function createSvg(clz) {
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-    var gy = svg.append("g")
+    svg.append("g")
         .attr("class", "y axis")
         .call(yAxis);
 
-    var gx = svg.append("g")
+    svg.append("g")
         .attr("class", "x axis")
         .attr("transform", "translate(0," + height + ")")
         .call(xAxis);
+
+    svg.append("g")
+        .attr("class", "y-zero axis")
+        .call(y0Axis);
+
     return svg;
 }
 $.get('http://devgru.github.io/uik/uiks.json', function (data) {
