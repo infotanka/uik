@@ -39,7 +39,7 @@ var y = d3.scale.log()
 
 var y0 = d3.scale.ordinal()
     .domain([0])
-    .range([-20]);
+    .range([height + 20]);
 
 var y0Axis = d3.svg.axis()
     .scale(y0)
