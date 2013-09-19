@@ -52,7 +52,7 @@ var xSobyanin = d3.scale.linear()
     .range([0, width]);
 
 var xObservers = d3.scale.linear()
-    .domain([0, 10])
+    .domain([0, 4])
     .range([0, width]);
 
 var xSobyaninAxis = d3.svg.axis()
