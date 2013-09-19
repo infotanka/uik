@@ -36,6 +36,7 @@ var minY = 1;
 var y = d3.scale.log()
     .domain([minY, 100])
     .range([height, 0])
+    .ticks(20, d3.format(",.1s"));
 
 var y0 = d3.scale.ordinal()
     .domain([0])
@@ -96,7 +97,7 @@ $.get('http://devgru.github.io/uik/uiks.json', function (data) {
             return x(uik.sobyaninPercents);
         }).attr('cy',function (uik) {
             if (uik.outdoorPercents == 0) return y(minY) + 20;
-            console.log(uik.outdoorPercents, y(uik.outdoorPercents));
+//            console.log(uik.outdoorPercents, y(uik.outdoorPercents));
             return y(uik.outdoorPercents);
         }).attr('fill',function (uik) {
             return getUicColor(uik, 'observers');
