@@ -32,12 +32,12 @@ var margin = {top: 20, right: 30, bottom: 20, left: 50},
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
-var y = d3.scale.linear()
+var y = d3.scale.log()
     .domain([0, 100])
     .range([height, 0]);
 
 var x = d3.scale.linear()
-    .domain([0, 100])
+    .domain([20, 100])
     .range([0, width]);
 
 var xAxis = d3.svg.axis()
@@ -82,6 +82,6 @@ $.get('http://devgru.github.io/uik/uiks.json', function (data) {
             return y(uik.outdoorPercents);
         }).attr('fill',function (uik) {
             return getUicColor(uik, 'observers');
-        }).attr('r', 1);
+        }).attr('r', 1.5);
 });
 
