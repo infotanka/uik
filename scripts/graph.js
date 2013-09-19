@@ -32,7 +32,7 @@ var margin = {top: 20, right: 30, bottom: 80, left: 50},
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
-var minY = 1;
+var minY = 0.1;
 var y = d3.scale.log()
     .domain([minY, 100])
     .range([height, 0]);
@@ -46,7 +46,7 @@ var y0Axis = d3.svg.axis()
     .orient("left");
 
 var x = d3.scale.linear()
-    .domain([20, 100])
+    .domain([30, 100])
     .range([0, width]);
 
 var xAxis = d3.svg.axis()
