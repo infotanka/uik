@@ -43,7 +43,7 @@ var y0 = d3.scale.ordinal()
 
 var y0Axis = d3.svg.axis()
     .scale(y0)
-    .orient("bottom");
+    .orient("left");
 
 var x = d3.scale.linear()
     .domain([20, 100])
