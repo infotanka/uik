@@ -136,7 +136,7 @@ $.get('http://devgru.github.io/uik/uiks.json', function (data) {
     var colorScale = d3.scale.linear()
         .domain([0, 100])
         .interpolate(d3.interpolateHsl)
-        .range(["#6DC137", "#D33800"]);
+        .range(["#7cc1fb", "#1551e3"]);
 
     newbies
         .append('circle')
