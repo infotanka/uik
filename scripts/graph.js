@@ -48,24 +48,25 @@ var yAxis = d3.svg.axis()
     .scale(y)
     .orient("left");
 
-var svg = d3.select("body").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-    .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+function createSvg(clz) {
+    var svg = d3.select("body").append("svg").classed(clz)
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-var gy = svg.append("g")
-    .attr("class", "y axis")
-    .call(yAxis);
+    var gy = svg.append("g")
+        .attr("class", "y axis")
+        .call(yAxis);
 
-var gx = svg.append("g")
-    .attr("class", "x axis")
-    .attr("transform", "translate(0," + height + ")")
-    .call(xAxis);
-
+    var gx = svg.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + height + ")")
+        .call(xAxis);
+    return svg;
+}
 $.get('http://devgru.github.io/uik/uiks.json', function (data) {
-    var circles = svg.selectAll('circle').data(data);
-    circles.enter().append('circle')
+    createSvg('diff').selectAll('circle').data(data).enter().append('circle')
         .attr('cx',function (uik) {
             return x(uik.sobyaninPercents);
         }).attr('cy',function (uik) {
@@ -73,4 +74,14 @@ $.get('http://devgru.github.io/uik/uiks.json', function (data) {
         }).attr('fill',function (uik) {
             return getUicColor(uik, 'observers');
         }).attr('r', getUicScale);
+
+    createSvg('undiff').selectAll('circle').data(data).enter().append('circle')
+        .attr('cx',function (uik) {
+            return x(uik.sobyaninPercents);
+        }).attr('cy',function (uik) {
+            return y(uik.outdoorPercents);
+        }).attr('fill',function (uik) {
+            return getUicColor(uik, 'observers');
+        }).attr('r', 1);
 });
+
