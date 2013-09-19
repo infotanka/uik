@@ -98,7 +98,6 @@ $.get('http://devgru.github.io/uik/uiks.json', function (data) {
             return xSobyanin(uik.sobyaninPercents);
         }).attr('cy',function (uik) {
             if (uik.outdoorPercents == 0) return yOutdoor(minY) + y0Offset;
-            console.log(uik.outdoorPercents, yOutdoor(uik.outdoorPercents));
             return yOutdoor(uik.outdoorPercents);
         }).attr('fill',function (uik) {
             return getUicColor(uik, 'observers');
@@ -134,7 +133,6 @@ $.get('http://devgru.github.io/uik/uiks.json', function (data) {
             return xObservers(uik.observer);
         }).attr('cy',function (uik) {
             if (uik.outdoorPercents == 0) return yOutdoor(minY) + y0Offset;
-            console.log(uik.outdoorPercents, yOutdoor(uik.outdoorPercents));
             return yOutdoor(uik.outdoorPercents);
         }).attr('fill', 'gray').attr('r', function (uik) {
             return 0.5 + Math.sqrt(uik.sobyaninPercents);
