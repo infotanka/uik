@@ -61,6 +61,10 @@ var xObservers = d3.scale.linear()
     .domain([0, 5])
     .range([0, width]);
 
+var yObservers = d3.scale.linear()
+    .domain([0, 5])
+    .range([0, width]);
+
 var xSobyaninAxis = d3.svg.axis()
     .scale(xSobyanin)
     .orient("bottom");
@@ -105,7 +109,36 @@ $.get('http://devgru.github.io/uik/uiks.json', function (data) {
             return yOutdoor(uik.outdoorPercents);
         }).attr('fill',function (uik) {
             return getUicColor(uik, 'observers');
-        }).attr('r', 2);
+        }).attr('r', 1.5);
+
+
+    svg = d3.select("body").append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    svg.append("g")
+        .attr("class", "y axis")
+        .call(yOutdoorAxis);
+
+    svg.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + (height + y0Offset) + ")")
+        .call(xSobyaninAxis);
+
+    svg
+        .selectAll('circle')
+        .data(data)
+        .enter()
+        .append('circle')
+        .attr('cx',function (uik) {
+            return xSobyanin(uik.sobyaninPercents);
+        }).attr('cy',function (uik) {
+            return yObservers(uik.observer + Math.random());
+        }).attr('fill',function (uik) {
+            return getUicColor(uik, 'outdoorPercents');
+        }).attr('r', 1.5);
 
 
     svg = d3.select("body").append("svg")
@@ -134,21 +167,35 @@ $.get('http://devgru.github.io/uik/uiks.json', function (data) {
         .enter();
 
     var colorScale = d3.scale.linear()
-        .domain([0, 100])
+        .domain([0, 50])
         .interpolate(d3.interpolateHsl)
-        .range(["#7cc1fb", "#1551e3"]);
+        .range(["#ffffff","#cccccc"]);
+
+    colorScale = d3.scale.linear()
+        .domain([51, 80])
+        .interpolate(d3.interpolateHsl)
+        .range(["#cccccc","red"]);
+
+    colorScale = d3.scale.linear()
+        .domain([81, 100])
+        .interpolate(d3.interpolateHsl)
+        .range(["red","#b01d00"]);
 
     newbies
         .append('circle')
         .attr('cx',function (uik) {
-            return xObservers(uik.observer +  + uik.sobyaninPercents/100);
+            return xObservers(uik.observer + Math.random());
         })
         .attr('cy',function (uik) {
             if (uik.outdoorPercents == 0) return yOutdoor(minY) + y0Offset;
             return yOutdoor(uik.outdoorPercents);
         })
         .attr('fill', function (uik) { return colorScale(uik.sobyaninPercents)})
-        .attr('r', 2);
+        .attr('r', function (uik) {
+            if (uik.sobyaninPercents >80) return "3";
+            else if (uik.sobyaninPercents >50) return "2";
+            return "1";
+        });
 
     /*
     newbies
