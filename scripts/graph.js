@@ -24,8 +24,8 @@ var getUicColor = function (uic, palette) {
 
 // размеры рабочей области
 var margin = {top: 20, right: 30, bottom: 80, left: 50},
-    width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+    width = 1200 - margin.left - margin.right,
+    height = 700 - margin.top - margin.bottom;
 
 var minY = 0.1;
 
@@ -78,67 +78,67 @@ $.get('http://devgru.github.io/uik/uiks.json', function (data) {
 //    data = data.slice(0, 50);
 
     var svg;
-    svg = d3.select("body").append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
-        .append("g")
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    // svg = d3.select("body").append("svg")
+    //     .attr("width", width + margin.left + margin.right)
+    //     .attr("height", height + margin.top + margin.bottom)
+    //     .append("g")
+    //     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-    svg.append("g")
-        .attr("class", "y axis")
-        .call(yOutdoorAxis);
+    // svg.append("g")
+    //     .attr("class", "y axis")
+    //     .call(yOutdoorAxis);
 
-    svg.append("g")
-        .attr("class", "x axis")
-        .attr("transform", "translate(0," + (height + y0Offset) + ")")
-        .call(xSobyaninAxis);
+    // svg.append("g")
+    //     .attr("class", "x axis")
+    //     .attr("transform", "translate(0," + (height + y0Offset) + ")")
+    //     .call(xSobyaninAxis);
 
-    svg.append("g")
-        .attr("class", "y-zero axis")
-        .call(y0Axis);
+    // svg.append("g")
+    //     .attr("class", "y-zero axis")
+    //     .call(y0Axis);
 
-    svg
-        .selectAll('circle')
-        .data(data)
-        .enter()
-        .append('circle')
-        .attr('cx',function (uik) {
-            return xSobyanin(uik.sobyaninPercents);
-        }).attr('cy',function (uik) {
-            if (uik.outdoorPercents == 0) return yOutdoor(minY) + y0Offset;
-            return yOutdoor(uik.outdoorPercents);
-        }).attr('fill',function (uik) {
-            return getUicColor(uik, 'observers');
-        }).attr('r', 1.5);
+    // svg
+    //     .selectAll('circle')
+    //     .data(data)
+    //     .enter()
+    //     .append('circle')
+    //     .attr('cx',function (uik) {
+    //         return xSobyanin(uik.sobyaninPercents);
+    //     }).attr('cy',function (uik) {
+    //         if (uik.outdoorPercents == 0) return yOutdoor(minY) + y0Offset;
+    //         return yOutdoor(uik.outdoorPercents);
+    //     }).attr('fill',function (uik) {
+    //         return getUicColor(uik, 'observers');
+    //     }).attr('r', 1.5);
 
 
-    svg = d3.select("body").append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
-        .append("g")
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    // svg = d3.select("body").append("svg")
+    //     .attr("width", width + margin.left + margin.right)
+    //     .attr("height", height + margin.top + margin.bottom)
+    //     .append("g")
+    //     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-    svg.append("g")
-        .attr("class", "y axis")
-        .call(yOutdoorAxis);
+    // svg.append("g")
+    //     .attr("class", "y axis")
+    //     .call(yOutdoorAxis);
 
-    svg.append("g")
-        .attr("class", "x axis")
-        .attr("transform", "translate(0," + (height + y0Offset) + ")")
-        .call(xSobyaninAxis);
+    // svg.append("g")
+    //     .attr("class", "x axis")
+    //     .attr("transform", "translate(0," + (height + y0Offset) + ")")
+    //     .call(xSobyaninAxis);
 
-    svg
-        .selectAll('circle')
-        .data(data)
-        .enter()
-        .append('circle')
-        .attr('cx',function (uik) {
-            return xSobyanin(uik.sobyaninPercents);
-        }).attr('cy',function (uik) {
-            return yObservers(uik.observer + Math.random());
-        }).attr('fill',function (uik) {
-            return getUicColor(uik, 'outdoorPercents');
-        }).attr('r', 1.5);
+    // svg
+    //     .selectAll('circle')
+    //     .data(data)
+    //     .enter()
+    //     .append('circle')
+    //     .attr('cx',function (uik) {
+    //         return xSobyanin(uik.sobyaninPercents);
+    //     }).attr('cy',function (uik) {
+    //         return yObservers(uik.observer + Math.random());
+    //     }).attr('fill',function (uik) {
+    //         return getUicColor(uik, 'outdoorPercents');
+    //     }).attr('r', 1.5);
 
 
     svg = d3.select("body").append("svg")
@@ -167,19 +167,9 @@ $.get('http://devgru.github.io/uik/uiks.json', function (data) {
         .enter();
 
     var colorScale = d3.scale.linear()
-        .domain([0, 50])
+        .domain([0, 100])
         .interpolate(d3.interpolateHsl)
-        .range(["#ffffff","#cccccc"]);
-
-    colorScale = d3.scale.linear()
-        .domain([51, 80])
-        .interpolate(d3.interpolateHsl)
-        .range(["#cccccc","red"]);
-
-    colorScale = d3.scale.linear()
-        .domain([81, 100])
-        .interpolate(d3.interpolateHsl)
-        .range(["red","#b01d00"]);
+        .range(["hsl(800, 0%, 100%)", "hsl(910, 80%, 0%)"]);
 
     newbies
         .append('circle')
@@ -192,8 +182,8 @@ $.get('http://devgru.github.io/uik/uiks.json', function (data) {
         })
         .attr('fill', function (uik) { return colorScale(uik.sobyaninPercents)})
         .attr('r', function (uik) {
-            if (uik.sobyaninPercents >80) return "3";
-            else if (uik.sobyaninPercents >50) return "2";
+            if (uik.sobyaninPercents >80) return "4";
+            else if (uik.sobyaninPercents >50) return "1";
             return "1";
         });
 
