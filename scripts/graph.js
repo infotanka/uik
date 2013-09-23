@@ -202,7 +202,11 @@ $.get('http://devgru.github.io/uik/uiks.json', function (data) {
         .append('circle')
         .attr('cx', function(control, i) { return 1000 + control; })
         .attr('cy', 100)
+        .attr('fill', 100)
         .attr('r', 4)
+        .on('click', function() {
+            console.log(arguments)
+        })
     ;
 
     /*
