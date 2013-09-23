@@ -197,10 +197,10 @@ $.get('http://devgru.github.io/uik/uiks.json', function (data) {
         .enter()
         .append('circle')
         .attr("class", "unclicked")
-        .attr('cx', function(control) { return 1000 + control; })
+        .attr('cx', function(control) { return 1000 + control * 2; })
         .attr('cy', 20)
         .attr('fill', 100)
-        .attr('r', 4)
+        .attr('r', 8)
         .on('click', function(control) {
             console.log(arguments);
             $(this).toggleClass('unclicked');
