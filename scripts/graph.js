@@ -203,7 +203,7 @@ $.get('http://devgru.github.io/uik/uiks.json', function (data) {
         .attr('r', 8)
         .on('click', function(control) {
             console.log(arguments);
-            $(this).toggleClass('unclicked');
+            d3.select(this).classed('unclicked', !$(this).hasClass('unclicked'));
 
             var relatedUiks = data.filter(function (uik) {
                 var sp = uik.sobyaninPercents;
