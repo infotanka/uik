@@ -212,7 +212,6 @@ $.get('http://devgru.github.io/uik/uiks.json', function (data) {
             group
                 .selectAll('circle')
                 .data(relatedUiks)
-                .update()
                 .attr('r', $(this).hasClass('unclicked') ? 1 : 4)
         })
     ;
