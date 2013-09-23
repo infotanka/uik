@@ -203,7 +203,7 @@ $.get('http://devgru.github.io/uik/uiks.json', function (data) {
         .attr('r', 8)
         .on('click', function(control) {
             var button = d3.select(this);
-            var wasUnclicked = d3.classed('unclicked');
+            var wasUnclicked = button.classed('unclicked');
             button.classed('unclicked', !wasUnclicked);
 
             var relatedUiks = data.filter(function (uik) {
