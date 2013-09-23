@@ -209,7 +209,7 @@ $.get('http://devgru.github.io/uik/uiks.json', function (data) {
             var relatedUiks = data.filter(function (uik) {
                 var sp = uik.sobyaninPercents;
                 var result = (sp < control) && (sp > (control - 10));
-                console.log('uik', uik.uik, 'returns', result, 'for', sp);
+                if(uik.uik == 202) console.log('uik', uik.uik, 'returns', result, 'for', sp);
                 return  result;
             });
             console.log('selected', relatedUiks.length, 'uiks');
