@@ -161,7 +161,11 @@ $.get('http://devgru.github.io/uik/uiks.json', function (data) {
         .call(y0Axis);
 
 
-    newbies = svg
+
+    group = svg.append("g")
+    control = svg.append("g")
+
+    newbies = group
         .selectAll('circle')
         .data(data)
         .enter();
@@ -188,7 +192,18 @@ $.get('http://devgru.github.io/uik/uiks.json', function (data) {
         })
         .on('click', function() {
             console.log(arguments)
-        });
+        })
+    ;
+
+    control
+        .selectAll('circle')
+        .data([20, 30, 40, 50, 60, 70, 80, 90, 100])
+        .enter()
+        .append('circle')
+        .attr('cx', function(control, i) { return 1000 + control; })
+        .attr('cy', 100)
+        .attr('r', 4)
+    ;
 
     /*
     newbies
