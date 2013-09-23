@@ -208,6 +208,7 @@ $.get('http://devgru.github.io/uik/uiks.json', function (data) {
 
             var relatedUiks = data.filter(function (uik) {
                 var sp = uik.sobyaninPercents;
+                console.log('filtering against <', control, 'and >', control - 10)
                 return sp < control && sp > (control - 10);
             });
             group
