@@ -206,7 +206,7 @@ $.get('http://devgru.github.io/uik/uiks.json', function (data) {
             $(this).toggleClass('unclicked');
 
             var relatedUiks = data.filter(function (uik) {
-                var sp = uik.sobyainPercents;
+                var sp = uik.sobyaninPercents;
                 return sp < control && sp > (control - 10);
             });
             group
