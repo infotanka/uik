@@ -185,6 +185,9 @@ $.get('http://devgru.github.io/uik/uiks.json', function (data) {
             if (uik.sobyaninPercents >80) return "4";
             else if (uik.sobyaninPercents >50) return "1";
             return "1";
+        })
+        .on('click', function() {
+            console.log(arguments)
         });
 
     /*
