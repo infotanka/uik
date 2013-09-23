@@ -185,11 +185,7 @@ $.get('http://devgru.github.io/uik/uiks.json', function (data) {
             return yOutdoor(uik.outdoorPercents);
         })
         .attr('fill', function (uik) { return colorScale(uik.sobyaninPercents)})
-        .attr('r', function (uik) {
-            if (uik.sobyaninPercents >80) return "4";
-            else if (uik.sobyaninPercents >50) return "1";
-            return "1";
-        })
+        .attr('r', 1)
         .on('click', function() {
             console.log(arguments)
         })
@@ -197,15 +193,27 @@ $.get('http://devgru.github.io/uik/uiks.json', function (data) {
 
     control
         .selectAll('circle')
-        .data([20, 30, 40, 50, 60, 70, 80, 90, 100])
+        .data([30, 40, 50, 60, 70, 80, 90, 100])
         .enter()
         .append('circle')
-        .attr('cx', function(control, i) { return 1000 + control; })
-        .attr('cy', 100)
+        .attr("class", "unclicked")
+        .attr('cx', function(control) { return 1000 + control; })
+        .attr('cy', 20)
         .attr('fill', 100)
         .attr('r', 4)
-        .on('click', function() {
-            console.log(arguments)
+        .on('click', function(control) {
+            console.log(arguments);
+            $(this).toggleClass('unclicked');
+
+            var relatedUiks = data.filter(function (uik) {
+                var sp = uik.sobyainPercents;
+                return sp < control && sp > (control - 10);
+            });
+            group
+                .selectAll('circle')
+                .data(relatedUiks)
+                .update()
+                .attr('r', $(this).hasClass('unclicked') ? 1 : 4)
         })
     ;
 
