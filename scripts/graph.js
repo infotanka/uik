@@ -202,8 +202,9 @@ $.get('http://devgru.github.io/uik/uiks.json', function (data) {
         .attr('fill', 100)
         .attr('r', 8)
         .on('click', function(control) {
-            console.log(arguments);
-            d3.select(this).classed('unclicked', !$(this).hasClass('unclicked'));
+            var button = d3.select(this);
+            var wasUnclicked = d3.classed('unclicked');
+            button.classed('unclicked', !wasUnclicked);
 
             var relatedUiks = data.filter(function (uik) {
                 var sp = uik.sobyaninPercents;
@@ -212,7 +213,7 @@ $.get('http://devgru.github.io/uik/uiks.json', function (data) {
             group
                 .selectAll('circle')
                 .data(relatedUiks)
-                .attr('r', $(this).hasClass('unclicked') ? 1 : 4)
+                .attr('r', wasUnclicked ? 4 : 1)
         })
     ;
 
