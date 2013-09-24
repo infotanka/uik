@@ -161,7 +161,11 @@ $.get('http://devgru.github.io/uik/uiks.json', function (data) {
         .call(y0Axis);
 
 
-    newbies = svg
+
+    group = svg.append("g")
+    control = svg.append("g")
+
+    newbies = group
         .selectAll('circle')
         .data(data)
         .enter();
@@ -181,11 +185,40 @@ $.get('http://devgru.github.io/uik/uiks.json', function (data) {
             return yOutdoor(uik.outdoorPercents);
         })
         .attr('fill', function (uik) { return colorScale(uik.sobyaninPercents)})
-        .attr('r', function (uik) {
-            if (uik.sobyaninPercents >80) return "4";
-            else if (uik.sobyaninPercents >50) return "1";
-            return "1";
-        });
+        .attr('r', 1)
+        .on('click', function() {
+            console.log(arguments)
+        })
+    ;
+
+    control
+        .selectAll('circle')
+        .data([30, 40, 50, 60, 70, 80, 90, 100])
+        .enter()
+        .append('circle')
+        .attr("class", "unclicked")
+        .attr('cx', function(control) { return 900 + control * 2; })
+        .attr('cy', 20)
+        .attr('fill', 100)
+        .attr('r', 8)
+        .on('click', function(control) {
+            var button = d3.select(this);
+            var wasUnclicked = button.classed('unclicked');
+            button.classed('unclicked', !wasUnclicked);
+
+            var relatedUiks = data.filter(function (uik) {
+                var sp = uik.sobyaninPercents;
+                var result = (sp < control) && (sp > (control - 10));
+                if(uik.uik == 202) console.log('uik', uik.uik, 'returns', result, 'for', sp);
+                return  result;
+            });
+            console.log('selected', relatedUiks.length, 'uiks');
+            group
+                .selectAll('circle')
+                .data(relatedUiks)
+                .attr('r', wasUnclicked ? 4 : 1)
+        })
+    ;
 
     /*
     newbies
